@@ -1,0 +1,6 @@
+_draft/
+banners/
+cms/
+*.psd
+.DS_Store
+Thumbs.db

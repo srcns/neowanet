@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NEOWA — Coming Soon</title>
+<meta name="description" content="NEOWA: Old School MMO to Offline Repacks. Zero-setup, single-executable offline single-player worlds.">
+<meta name="robots" content="noindex, nofollow">
+<style>
+:root {
+  --bg: #0b0e0d;
+  --panel: #111614;
+  --line: #232d27;
+  --line-strong: #37463d;
+  --fg: #d8e2dc;
+  --muted: #7e8f85;
+  --accent: #39ff14;
+  --font: 'Consolas', 'Cascadia Mono', 'Liberation Mono', 'Courier New', monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  border-radius: 0;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+button:focus-visible, a:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: -1px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.page-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  height: 46px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  border-right: 1px solid var(--line);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--fg);
+}
+
+.brand:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.logo-mark {
+  display: block;
+  width: 30px;
+  height: 19px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.header-nav {
+  display: flex;
+  align-items: stretch;
+}
+
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 16px;
+  border-left: 1px solid var(--line);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg);
+}
+
+.nav-btn:hover, .nav-btn[aria-expanded="true"] {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.hero-box {
+  width: 100%;
+  max-width: 560px;
+  border: 1px solid var(--line-strong);
+  background: var(--panel);
+}
+
+.hero-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.tag-soon {
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 2px 7px;
+  font-weight: 700;
+}
+
+.hero-domain {
+  color: var(--muted);
+}
+
+.hero-body {
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.hero-logo {
+  width: 84px;
+  height: 54px;
+  fill: var(--accent);
+  display: block;
+}
+
+.hero-title {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.1;
+}
+
+.hero-sub {
+  margin: 0;
+  color: var(--fg);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+
+.hero-note {
+  margin: 0;
+  padding: 12px 14px;
+  border-left: 2px solid var(--accent);
+  background: var(--bg);
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+  width: 100%;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 18px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.action-btn:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* Full-screen About view */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: var(--bg);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+  height: 46px;
+  flex-shrink: 0;
+}
+
+.modal-bar-left {
+  display: flex;
+  align-items: stretch;
+}
+
+.bar-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 14px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg);
+}
+
+.bar-btn.is-back {
+  border-right: 1px solid var(--line);
+  color: var(--accent);
+}
+
+.bar-btn.is-close {
+  border-left: 1px solid var(--line);
+}
+
+.bar-btn:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.crumb {
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.about-wrap {
+  flex: 1;
+  padding: 40px 24px 64px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.about-card {
+  width: 100%;
+  max-width: 760px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  padding: 28px 32px 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.about-title {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: 0.04em;
+  color: var(--fg);
+}
+
+.about-article {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  color: #c5d1ca;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.about-article p {
+  margin: 0;
+}
+
+@media (max-width: 560px) {
+  .stage {
+    padding: 14px;
+  }
+  .hero-body {
+    padding: 28px 20px;
+  }
+  .about-wrap {
+    padding: 0;
+  }
+  .about-card {
+    border: 0;
+    padding: 22px 18px 32px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="page-shell">
+  <header class="site-header">
+    <a href="#" id="brand-link" class="brand" aria-label="NEOWA Home">
+      <svg class="logo-mark" viewBox="-8 13 116 74" width="30" height="19" aria-hidden="true">
+        <path d="M27.938 15.173a3.38 3.38 0 0 0-2.391 1.01L-5.366 47.629a3.38 3.38 0 0 0 0 4.74l30.912 31.448a3.38 3.38 0 0 0 5.792-2.37V29.265l37.935 54.123a3.38 3.38 0 0 0 5.18.429l30.913-31.447a3.38 3.38 0 0 0 0-4.74L74.453 16.183a3.38 3.38 0 0 0-5.791 2.37v52.181L30.727 16.612a3.38 3.38 0 0 0-2.789-1.439Zm-3.36 11.639v46.376L1.784 49.999Zm50.843 0 22.795 23.187-22.795 23.189Z"></path>
+      </svg>
+      <span>NEOWA</span>
+    </a>
+    <nav class="header-nav" aria-label="Navigation">
+      <button type="button" id="btn-nav-about" class="nav-btn" aria-expanded="false">About</button>
+    </nav>
+  </header>
+
+  <main class="stage">
+    <section class="hero-box" aria-label="Status">
+      <div class="hero-top">
+        <span class="tag-soon">COMING SOON</span>
+        <span class="hero-domain">NEOWA.NET</span>
+      </div>
+      <div class="hero-body">
+        <svg class="hero-logo" viewBox="-8 13 116 74" width="84" height="54" aria-hidden="true">
+          <path d="M27.938 15.173a3.38 3.38 0 0 0-2.391 1.01L-5.366 47.629a3.38 3.38 0 0 0 0 4.74l30.912 31.448a3.38 3.38 0 0 0 5.792-2.37V29.265l37.935 54.123a3.38 3.38 0 0 0 5.18.429l30.913-31.447a3.38 3.38 0 0 0 0-4.74L74.453 16.183a3.38 3.38 0 0 0-5.791 2.37v52.181L30.727 16.612a3.38 3.38 0 0 0-2.789-1.439Zm-3.36 11.639v46.376L1.784 49.999Zm50.843 0 22.795 23.187-22.795 23.189Z"></path>
+        </svg>
+        <h1 class="hero-title">NEOWA</h1>
+        <p class="hero-sub">OLD SCHOOL MMO TO OFFLINE REPACKS</p>
+        <p class="hero-note">
+          Single-executable offline single-player worlds for classic 2000s MMORPGs and browser strategy games. Builds are currently undergoing source verification and packaging prior to release.
+        </p>
+        <div class="hero-actions">
+          <button type="button" id="btn-hero-about" class="action-btn">[ ABOUT ]</button>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="about-overlay" class="overlay" role="dialog" aria-modal="true" aria-labelledby="about-heading" hidden>
+  <div class="modal-bar">
+    <div class="modal-bar-left">
+      <button type="button" id="btn-back-about" class="bar-btn is-back">[ &lt;- HOME ]</button>
+      <span class="crumb">NEOWA.NET // ABOUT</span>
+    </div>
+    <button type="button" id="btn-close-about" class="bar-btn is-close">[ ESC ]</button>
+  </div>
+  <div class="about-wrap">
+    <article class="about-card">
+      <h2 id="about-heading" class="about-title">ABOUT NEOWA</h2>
+      <div class="about-article">
+        <p>NEOWA is an independent engineering and archival project converting classic 2000s MMORPGs and browser strategy games into zero-setup, single-executable (.exe) offline single-player worlds.</p>
+        <p>Each release embeds the world simulation engine, a three-layer local SQLite storage architecture (content, original_world, singleplayer), a client-driven fixed-timestep world clock, and lossless Zstd/LZMA2 compression. Player saves live separately under %LOCALAPPDATA%\NEOWA\Saves so future patches never overwrite your progress.</p>
+        <p>Every build is 100% free with zero link shorteners, ads in downloads, or paywalls. Package integrity is verified via SHA-256 on every release.</p>
+      </div>
+    </article>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var aboutOverlay = document.getElementById('about-overlay');
+  var navAbout = document.getElementById('btn-nav-about');
+
+  function openAbout(pushHash) {
+    aboutOverlay.hidden = false;
+    aboutOverlay.scrollTop = 0;
+    document.body.style.overflow = 'hidden';
+    navAbout.setAttribute('aria-expanded', 'true');
+    document.title = 'About — NEOWA';
+    if (pushHash && location.hash !== '#about') {
+      history.pushState(null, '', '#about');
+    }
+  }
+
+  function closeAbout(pushHash) {
+    aboutOverlay.hidden = true;
+    document.body.style.overflow = '';
+    navAbout.setAttribute('aria-expanded', 'false');
+    document.title = 'NEOWA — Coming Soon';
+    if (pushHash && location.hash) {
+      history.pushState(null, '', location.pathname + location.search);
+    }
+  }
+
+  function syncRoute() {
+    if (location.hash === '#about') openAbout(false);
+    else closeAbout(false);
+  }
+
+  navAbout.addEventListener('click', function () {
+    if (aboutOverlay.hidden) openAbout(true);
+    else closeAbout(true);
+  });
+
+  document.getElementById('btn-hero-about').addEventListener('click', function () { openAbout(true); });
+  document.getElementById('btn-back-about').addEventListener('click', function () { closeAbout(true); });
+  document.getElementById('btn-close-about').addEventListener('click', function () { closeAbout(true); });
+  document.getElementById('brand-link').addEventListener('click', function (e) {
+    e.preventDefault();
+    closeAbout(true);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !aboutOverlay.hidden) closeAbout(true);
+  });
+
+  window.addEventListener('hashchange', syncRoute);
+  syncRoute();
+})();
+</script>
+</body>
+</html>
