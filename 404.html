@@ -2,9 +2,214 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>NEOWA</title>
-<meta http-equiv="refresh" content="0;url=/">
-<script>location.replace('/');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>404 — Page Not Found | NEOWA</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+:root {
+  --bg: #0b0e0d;
+  --panel: #111614;
+  --line: #232d27;
+  --line-strong: #37463d;
+  --fg: #d8e2dc;
+  --muted: #7e8f85;
+  --accent: #39ff14;
+  --font: 'Consolas', 'Cascadia Mono', 'Liberation Mono', 'Courier New', monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  border-radius: 0;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: -1px;
+}
+
+.page-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-header {
+  height: 46px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  border-right: 1px solid var(--line);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--fg);
+}
+
+.brand:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.logo-mark {
+  display: block;
+  width: 30px;
+  height: 19px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.err-box {
+  width: 100%;
+  max-width: 560px;
+  border: 1px solid var(--line-strong);
+  background: var(--panel);
+}
+
+.err-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.tag-404 {
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 2px 7px;
+  font-weight: 700;
+}
+
+.err-domain {
+  color: var(--muted);
+}
+
+.err-body {
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.err-logo {
+  width: 64px;
+  height: 41px;
+  fill: var(--accent);
+  display: block;
+}
+
+.err-title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.15;
+}
+
+.err-note {
+  margin: 0;
+  padding: 12px 14px;
+  border-left: 2px solid var(--accent);
+  background: var(--bg);
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+  width: 100%;
+}
+
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 18px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.action-btn:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+@media (max-width: 560px) {
+  .stage {
+    padding: 14px;
+  }
+  .err-body {
+    padding: 28px 20px;
+  }
+}
+</style>
 </head>
-<body style="background:#0b0e0d;color:#d8e2dc;font-family:monospace"></body>
+<body>
+<div class="page-shell">
+  <header class="site-header">
+    <a href="/" class="brand" aria-label="NEOWA Home">
+      <svg class="logo-mark" viewBox="-8 13 116 74" width="30" height="19" aria-hidden="true">
+        <path d="M27.938 15.173a3.38 3.38 0 0 0-2.391 1.01L-5.366 47.629a3.38 3.38 0 0 0 0 4.74l30.912 31.448a3.38 3.38 0 0 0 5.792-2.37V29.265l37.935 54.123a3.38 3.38 0 0 0 5.18.429l30.913-31.447a3.38 3.38 0 0 0 0-4.74L74.453 16.183a3.38 3.38 0 0 0-5.791 2.37v52.181L30.727 16.612a3.38 3.38 0 0 0-2.789-1.439Zm-3.36 11.639v46.376L1.784 49.999Zm50.843 0 22.795 23.187-22.795 23.189Z"></path>
+      </svg>
+      <span>NEOWA</span>
+    </a>
+  </header>
+
+  <main class="stage">
+    <section class="err-box" aria-label="404 Page Not Found">
+      <div class="err-top">
+        <span class="tag-404">HTTP 404 // NOT FOUND</span>
+        <span class="err-domain">NEOWA.NET</span>
+      </div>
+      <div class="err-body">
+        <svg class="err-logo" viewBox="-8 13 116 74" width="64" height="41" aria-hidden="true">
+          <path d="M27.938 15.173a3.38 3.38 0 0 0-2.391 1.01L-5.366 47.629a3.38 3.38 0 0 0 0 4.74l30.912 31.448a3.38 3.38 0 0 0 5.792-2.37V29.265l37.935 54.123a3.38 3.38 0 0 0 5.18.429l30.913-31.447a3.38 3.38 0 0 0 0-4.74L74.453 16.183a3.38 3.38 0 0 0-5.791 2.37v52.181L30.727 16.612a3.38 3.38 0 0 0-2.789-1.439Zm-3.36 11.639v46.376L1.784 49.999Zm50.843 0 22.795 23.187-22.795 23.189Z"></path>
+        </svg>
+        <h1 class="err-title">404 — PAGE NOT FOUND</h1>
+        <p class="err-note">This URL is no longer active on neowa.net. NEOWA now hosts free, zero-setup offline versions of online games.</p>
+        <a href="/" class="action-btn">[ &lt;- RETURN TO NEOWA.NET ]</a>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
 </html>
