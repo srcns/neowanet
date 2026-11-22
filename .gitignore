@@ -1,6 +1,11 @@
+private/
 _draft/
-banners/
+docs/
 cms/
+banners/
+design/
+social/
+neowa_reddit/
 *.psd
 .DS_Store
 Thumbs.db
